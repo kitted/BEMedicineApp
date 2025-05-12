@@ -106,4 +106,8 @@ export class UsersService {
     const password = await bcrypt.hash(payload.password, 10);
     return await this.userModel.create({ ...payload, password });
   }
+
+  async wakeup() {
+    return await this.userModel.find();
+  }
 }
