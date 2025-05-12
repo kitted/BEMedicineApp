@@ -29,7 +29,7 @@ export class QueryDto {
 
   @ApiPropertyOptional({
     enum: sortTypeEnum,
-    default: sortTypeEnum.desc,
+    default: sortTypeEnum.asc,
   })
   @IsOptional()
   @IsEnum(sortTypeEnum)

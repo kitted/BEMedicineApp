@@ -1,4 +1,4 @@
-import { Body, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 import { AdminController } from '../decorators/swagger';
 import { CreateProfileDto } from 'src/collection/profile/dtos/create-profile.dto';
@@ -22,5 +22,12 @@ export class ProfileController {
   @Post()
   async create(@Body() dto: CreateProfileDto) {
     return await this.service.create(dto);
+  }
+
+  @ApiOperation({ summary: 'delete' })
+  @ApiParam({ name: 'id', required: true })
+  @Delete(':id')
+  async delete(@Param('id', ParseIdPipe) id: ID) {
+    return await this.service.delete(id);
   }
 }

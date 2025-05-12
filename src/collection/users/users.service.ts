@@ -82,9 +82,9 @@ export class UsersService {
     }
 
     const user = await this.userModel.findById(jwt.id);
-    if (!user || user.role === RoleEnum.ADMIN) {
-      throw new HttpException('Không tìm thấy User!', HttpStatus.BAD_REQUEST);
-    }
+    // if (!user || user.role === RoleEnum.ADMIN) {
+    //   throw new HttpException('Không tìm thấy User!', HttpStatus.BAD_REQUEST);
+    // }
 
     const match = await bcrypt.compare(dto.oldPassword, user.password);
 

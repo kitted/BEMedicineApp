@@ -27,14 +27,6 @@ export class CreatePatientDto {
 
   @ApiProperty({
     required: true,
-    type: String,
-    example: 'phoneNumber',
-  })
-  @IsString()
-  phoneNumber: string;
-
-  @ApiProperty({
-    required: true,
     enum: SexEnum,
     example: SexEnum.MALE,
   })

@@ -33,7 +33,7 @@ export class ProfileService {
   }
 
   async findByPatient(id: ID | string, query: QueryDto) {
-    const size = query.limit ? +query.limit : 10;
+    const size = query.limit ? +query.limit : 1000;
     const page = query.page ? +query.page : 1;
     const sortBy = query.sortBy;
     const sortType = query.sortType === sortTypeEnum.desc ? -1 : 1;
@@ -85,5 +85,15 @@ export class ProfileService {
         count,
       },
     };
+  }
+
+  async delete(id: ID | string) {
+    return await this.profileModel.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      {
+        new: true,
+      },
+    );
   }
 }

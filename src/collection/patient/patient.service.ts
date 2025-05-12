@@ -13,24 +13,36 @@ export class PatientService {
     private readonly patientModel: ReturnModelType<typeof Patients>,
   ) {}
 
-  async getTest() {
-    return 'abc';
-  }
-
   async findById(id: ID | string) {
     return await this.patientModel.findById(id);
   }
 
-  async findByPhone(phoneNumber: string) {
-    return await this.patientModel.find({ phoneNumber });
-  }
+  // async findByPhone(phoneNumber: string) {
+  //   return await this.patientModel.find({ phoneNumber });
+  // }
 
   async create(payload: CreatePatientDto) {
-    const phoneCheck = await this.findByPhone(payload.phoneNumber);
-    if (phoneCheck && phoneCheck.length > 0) {
-      throw new BadRequestException('Bệnh nhân đã tồn tại trong hệ thống!');
-    }
+    // const phoneCheck = await this.findByPhone(payload.phoneNumber);
+    // if (phoneCheck && phoneCheck.length > 0) {
+    //   throw new BadRequestException('Bệnh nhân đã tồn tại trong hệ thống!');
+    // }
     return await this.patientModel.create(payload);
+  }
+
+  async update(id: ID | string, payload: CreatePatientDto) {
+    return await this.patientModel.findByIdAndUpdate(id, payload, {
+      new: true,
+    });
+  }
+
+  async delete(id: ID | string) {
+    return await this.patientModel.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      {
+        new: true,
+      },
+    );
   }
 
   async findPatient(query: QueryDto) {

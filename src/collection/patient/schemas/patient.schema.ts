@@ -3,7 +3,7 @@ import { prop } from '@typegoose/typegoose';
 import { SexEnum } from '../interfaces/sex.enum';
 
 export class Patients extends BaseModel {
-  @prop({ required: true, unique: true })
+  @prop({ required: true })
   username: string;
 
   @prop({ required: true })
@@ -12,8 +12,8 @@ export class Patients extends BaseModel {
   @prop({ required: true })
   address: string;
 
-  @prop({ required: true })
-  phoneNumber: string;
+  // @prop({ required: true })
+  // phoneNumber: string;
 
   @prop({ enum: SexEnum, required: true })
   sex: SexEnum;
