@@ -108,6 +108,7 @@ export class UsersService {
   }
 
   async wakeup() {
+    console.log('wake up ... ');
     return await this.userModel.find();
   }
 }
