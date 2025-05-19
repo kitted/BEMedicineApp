@@ -7,9 +7,11 @@ import * as bcrypt from 'bcrypt';
 import { RoleEnum } from './interfaces/role.enum';
 import { JwtPayload } from '../auth/interfaces/jwtPayload.interface';
 import { ChangePasswordDto } from '../auth/dtos/change-password.dto';
+import { Logger } from '@nestjs/common'; // Thêm import này
 
 @Injectable()
 export class UsersService {
+  private readonly logger = new Logger(UsersService.name); // Tạo instance logger
   constructor(
     @InjectModel(Users)
     private readonly userModel: ReturnModelType<typeof Users>,
@@ -109,6 +111,7 @@ export class UsersService {
 
   async wakeup() {
     console.log('wake up ... ');
+    this.logger.log('wake up ...'); // Ghi log
     return await this.userModel.find();
   }
 }
